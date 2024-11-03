@@ -1,0 +1,19 @@
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    &-logo {
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        background-image: url('/icons/github-icon.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .copyright {
+        font-family: 'DM Serif Text';
+        font-size: 20px;
+        font-weight: bold;
+    }
+}
