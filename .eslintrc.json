@@ -1,6 +1,12 @@
 {
     "parser": "@typescript-eslint/parser",
     "plugins": ["@typescript-eslint", "prettier", "import"],
+    "parserOptions": {
+        "project": "./tsconfig.json",
+        "tsconfigRootDir": ".",
+        "ecmaVersion": 2020,
+        "sourceType": "module"
+    },
     "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/eslint-recommended",
@@ -9,10 +15,7 @@
         "prettier",
         "airbnb-base"
     ],
-    "parserOptions": {
-        "ecmaVersion": 2020,
-        "sourceType": "module"
-    },
+
     "env": {
         "es6": true,
         "browser": true,
@@ -20,7 +23,11 @@
     },
     "rules": {
         "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+        "linebreak-style": "off",
         "no-debugger": "off",
+        "comma-dangle": "off",
         "no-console": 0,
         "class-methods-use-this": "off",
         "@typescript-eslint/no-explicit-any": "error",
@@ -31,5 +38,6 @@
             }
         ],
         "indent": ["error", 4]
-    }
+    },
+    "ignorePatterns": ["vite.config.js", "node_modules", "dist"]
 }
