@@ -25,6 +25,8 @@
         "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
         "no-unused-vars": "off",
         "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+        "import/extensions": "off",
+        "import/no-unresolved": "off",
         "linebreak-style": "off",
         "no-debugger": "off",
         "comma-dangle": "off",
