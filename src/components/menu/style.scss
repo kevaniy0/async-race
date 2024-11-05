@@ -1,0 +1,8 @@
+.menu-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    &__item {
+        list-style: none;
+    }
+}
