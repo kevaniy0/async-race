@@ -2,7 +2,7 @@ import './style.scss';
 import Footer from '../components/footer';
 import Header from '../components/header';
 import Main from '../components/main';
-import { createElemet } from '../utils/dom';
+import { createElement } from '../utils/dom';
 import containerParams from './app-data';
 import { createRouter, Route } from '../router';
 import renderGaragePage from '../pages/garage';
@@ -16,7 +16,7 @@ const routes: Route[] = [
 export const router = createRouter(routes);
 
 const App = () => {
-    const container = createElemet(containerParams);
+    const container = createElement(containerParams);
     const header = Header();
     const main = Main();
     const footer = Footer();

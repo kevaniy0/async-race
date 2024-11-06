@@ -1,9 +1,9 @@
-import { createElemet, getElement } from '../../utils/dom';
+import { createElement, getElement } from '../../utils/dom';
 import mainParams from './main-data';
 import './style.scss';
 
 const Main = (): HTMLElement => {
-    const main = createElemet(mainParams);
+    const main = createElement(mainParams);
 
     return main;
 };

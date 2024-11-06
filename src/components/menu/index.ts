@@ -1,20 +1,20 @@
 import './style.scss';
 import { router } from '../../app';
-import { createElemet } from '../../utils/dom';
+import { createElement } from '../../utils/dom';
 import * as MENU from './menu-data';
 
 const Menu = (): HTMLUListElement => {
-    const menu = createElemet(MENU.list);
+    const menu = createElement(MENU.list);
 
-    const garage = createElemet(MENU.garage);
-    const garageButton = createElemet(MENU.garageButton);
+    const garage = createElement(MENU.garage);
+    const garageButton = createElement(MENU.garageButton);
     garageButton.addEventListener('click', () => {
         router.navigate('/garage');
     });
     garage.append(garageButton);
 
-    const winners = createElemet(MENU.winners);
-    const winnersButton = createElemet(MENU.winnersButton);
+    const winners = createElement(MENU.winners);
+    const winnersButton = createElement(MENU.winnersButton);
     winnersButton.addEventListener('click', () => {
         router.navigate('/winners');
     });
