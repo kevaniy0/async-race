@@ -25,7 +25,7 @@ const renderGaragePage = (): void => {
     const page = createElement(GARAGE.page);
     const carSection = createElement(GARAGE.carSection);
     getGarageCars().then((result) => {
-        page.textContent = `Page #${result.page}`;
+        page.textContent = `Page # ${result.page}`;
         title.textContent = `Garage (${result.total})`;
         fillGarageSection(carSection, result);
     });
