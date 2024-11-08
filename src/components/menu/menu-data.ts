@@ -5,11 +5,11 @@ export const garage: ElementParams<'li'> = { tag: 'li', classNames: ['menu-list_
 export const winners: ElementParams<'li'> = { tag: 'li', classNames: ['menu-list__item'] };
 export const winnersButton: ElementParams<'button'> = {
     tag: 'button',
-    classNames: ['menu-list__button'],
+    classNames: ['menu-list__button', 'button-primary'],
     textContent: 'Winners',
 };
 export const garageButton: ElementParams<'button'> = {
     tag: 'button',
-    classNames: ['menu-list__button'],
+    classNames: ['menu-list__button', 'button-primary'],
     textContent: 'Garage',
 };
