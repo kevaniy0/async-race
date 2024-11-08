@@ -4,6 +4,7 @@ import { createElement, createSVG, getElement } from '../../utils/dom';
 import * as GARAGE from './garage-data';
 import { CarsData } from '../../api/garage/garage-data';
 import createForm from './form';
+import createRaceButtons from './race-button-field';
 
 const fillGarageSection = (section: HTMLElement, data: CarsData) => {
     data.collection.forEach((car) => {
@@ -26,13 +27,14 @@ const renderGaragePage = (): void => {
     const page = createElement(GARAGE.page);
     const carSection = createElement(GARAGE.carSection);
     const form = createForm();
+    const raceField = createRaceButtons();
     getGarageCars().then((result) => {
         page.textContent = `Page # ${result.page}`;
         title.textContent = `Garage (${result.total})`;
         fillGarageSection(carSection, result);
     });
 
-    garage.append(form, title, page, carSection);
+    garage.append(form, raceField, title, page, carSection);
     root.append(garage);
 };
 

@@ -47,7 +47,7 @@ export const inputCreate: ElementParams<'input'> = {
 export const buttonCreate: ElementParams<'button'> = {
     tag: 'button',
     classNames: ['button', 'button-primary'],
-    textContent: 'Create',
+    textContent: 'CREATE',
 };
 
 export const labelUpdate: ElementParams<'label'> = {
@@ -63,5 +63,28 @@ export const inputUpdate: ElementParams<'input'> = {
 export const buttonUpdate: ElementParams<'button'> = {
     tag: 'button',
     classNames: ['button', 'button-primary'],
-    textContent: 'Update',
+    textContent: 'UPDATE',
+};
+
+export const buttonField: ElementParams<'div'> = {
+    tag: 'div',
+    classNames: ['button-field'],
+};
+
+export const buttonRace: ElementParams<'button'> = {
+    tag: 'button',
+    classNames: ['button', 'button-primary'],
+    textContent: 'RACE',
+};
+
+export const buttonReset: ElementParams<'button'> = {
+    tag: 'button',
+    classNames: ['button', 'button-primary'],
+    textContent: 'RESET',
+};
+
+export const buttonGenerateCars: ElementParams<'button'> = {
+    tag: 'button',
+    classNames: ['button', 'button-primary'],
+    textContent: 'GENERATE CARS',
 };
