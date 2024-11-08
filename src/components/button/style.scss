@@ -14,7 +14,8 @@
     justify-content: center;
     line-height: 1.25;
     margin: 0;
-    padding: 5px;
+    height: 30px;
+    width: 100px;
     position: relative;
     text-decoration: none;
     transition: all 250ms;
@@ -22,7 +23,6 @@
     -webkit-user-select: none;
     touch-action: manipulation;
     vertical-align: baseline;
-    width: auto;
 }
 
 .button-primary:hover,

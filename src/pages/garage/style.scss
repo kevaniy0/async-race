@@ -24,4 +24,13 @@
             bottom: 5px;
         }
     }
+
+    .garage-form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        .button-primary {
+            width: 60px;
+        }
+    }
 }

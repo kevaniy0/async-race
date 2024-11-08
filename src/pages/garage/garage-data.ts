@@ -29,3 +29,39 @@ export const carName: ElementParams<'p'> = {
 };
 export const carSvgClasses = ['car-image'];
 export const finishSvgClasses = ['finish-image'];
+
+export const form: ElementParams<'form'> = {
+    tag: 'form',
+    classNames: ['garage-form'],
+};
+export const labelCreate: ElementParams<'label'> = {
+    tag: 'label',
+    classNames: ['label', 'label-create'],
+};
+
+export const inputCreate: ElementParams<'input'> = {
+    tag: 'input',
+    classNames: ['input-text', 'input-create'],
+};
+
+export const buttonCreate: ElementParams<'button'> = {
+    tag: 'button',
+    classNames: ['button', 'button-primary'],
+    textContent: 'Create',
+};
+
+export const labelUpdate: ElementParams<'label'> = {
+    tag: 'label',
+    classNames: ['label', 'label-update'],
+};
+
+export const inputUpdate: ElementParams<'input'> = {
+    tag: 'input',
+    classNames: ['input-text', 'input-update'],
+};
+
+export const buttonUpdate: ElementParams<'button'> = {
+    tag: 'button',
+    classNames: ['button', 'button-primary'],
+    textContent: 'Update',
+};
