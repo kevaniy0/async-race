@@ -1,0 +1,18 @@
+.input-text {
+    font-family: 'DM Serif Text';
+    color: white;
+    background-color: #212121;
+    max-width: 150px;
+    height: 40px;
+    padding: 10px;
+    border: 2px solid white;
+    border-radius: 5px;
+    &:focus {
+        color: white;
+        background-color: #212121;
+        outline-color: #81bece;
+        box-shadow: -3px -3px 15px rgb(0, 255, 255);
+        transition: 0.1s;
+        transition-property: box-shadow;
+    }
+}
