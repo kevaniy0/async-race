@@ -2,7 +2,7 @@ import './style.scss';
 import { createElement, createSVG, getElement } from '../../utils/dom';
 import * as WINNERS from './winners-data';
 import renderWinnersList from '../../api/winners/winners';
-import { getCar } from '../../api/garage/garage';
+import { getCar } from '../../api/garage/getCar';
 
 const fillWinnersTable = (params: WINNERS.TableParams): void => {
     const thead = createElement({ tag: 'thead', classNames: ['thead'] });

@@ -1,6 +1,6 @@
 import url, { CarsData, Collection } from './garage-data';
 
-const getGarageCars = (page: number = 1, limit: number = 7) => {
+const getAllCars = (page: number = 1, limit: number = 7) => {
     let total = 0;
     const fullURL = `${url}?_page=${page}&_limit=${limit}`;
     return fetch(fullURL)
@@ -22,9 +22,4 @@ const getGarageCars = (page: number = 1, limit: number = 7) => {
         });
 };
 
-export const getCar = (id: number) => {
-    const fullURL = `${url}/${id}`;
-    return fetch(fullURL).then((response) => response.json());
-};
-
-export default getGarageCars;
+export default getAllCars;

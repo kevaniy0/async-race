@@ -1,12 +1,15 @@
 import './style.scss';
-import getGarageCars from '../../api/garage/garage';
+import getAllCars from '../../api/garage/getAllCars';
 import { createElement, createSVG, getElement } from '../../utils/dom';
 import * as GARAGE from './garage-data';
 import { CarsData } from '../../api/garage/garage-data';
-import createForm from './form';
+import createForm from './create-form-field';
 import createRaceButtons from './race-button-field';
 
-const fillGarageSection = (section: HTMLElement, data: CarsData) => {
+export const fillGarageSection = (section: HTMLElement, data: CarsData) => {
+    while (section.firstElementChild) {
+        section.firstElementChild.remove();
+    }
     data.collection.forEach((car) => {
         const container = createElement(GARAGE.carContainer);
         const carName = createElement(GARAGE.carName);
@@ -22,13 +25,17 @@ const fillGarageSection = (section: HTMLElement, data: CarsData) => {
 const renderGaragePage = (): void => {
     const root = getElement('.main');
 
+    while (root.firstElementChild) {
+        root.firstElementChild.remove();
+    }
+
     const garage = createElement(GARAGE.container);
     const title = createElement(GARAGE.title);
     const page = createElement(GARAGE.page);
     const carSection = createElement(GARAGE.carSection);
     const form = createForm();
     const raceField = createRaceButtons();
-    getGarageCars().then((result) => {
+    getAllCars().then((result) => {
         page.textContent = `Page # ${result.page}`;
         title.textContent = `Garage (${result.total})`;
         fillGarageSection(carSection, result);
