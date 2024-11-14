@@ -33,6 +33,10 @@
             width: 70px;
         }
         margin-bottom: 10px;
+        .label {
+            display: flex;
+            gap: 7px;
+        }
     }
     .button-field {
         display: flex;
