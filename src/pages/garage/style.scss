@@ -1,6 +1,9 @@
 .garage-container {
     font-family: 'DM Serif Text';
     .car-container {
+        display: flex;
+        align-items: baseline;
+        gap: 5px;
         font-weight: bold;
         height: 80px;
         border-bottom: 2px solid gray;
@@ -44,5 +47,15 @@
         .button-primary {
             width: max-content;
         }
+    }
+
+    .section-garage {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .action-buttons-container {
+        display: flex;
+        gap: 5px;
     }
 }

@@ -4,7 +4,6 @@ import getAllCars from '../../api/garage/getAllCars';
 import deleteWinnerCar from '../../api/winners/deleteCar';
 import getAllWinnerCars from '../../api/winners/getAllWinnerCars';
 import { WinnerCar } from '../../api/winners/winners-data';
-// import updateCar from '../../api/garage/updateCar';
 import Button from '../../components/button';
 import { createElement, getElement } from '../../utils/dom';
 import {
