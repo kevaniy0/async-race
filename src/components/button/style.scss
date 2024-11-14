@@ -49,3 +49,37 @@
     opacity: 0.6;
     transform: none;
 }
+
+.action-button {
+    background-color: #fff000;
+    border-radius: 12px;
+    color: #000;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    transition: 200ms;
+    letter-spacing: 0.7px;
+    height: 25px;
+    width: max-content;
+    box-sizing: border-box;
+    border: 0;
+    font-size: 14px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.action-button:not(:disabled):hover,
+.action-button:not(:disabled):focus {
+    outline: 0;
+    background: #f4e603;
+    box-shadow:
+        0 0 0 2px rgba(0, 0, 0, 0.2),
+        0 3px 8px 0 rgba(0, 0, 0, 0.15);
+}
+
+.action-button:disabled {
+    filter: saturate(0.2) opacity(0.5);
+    -webkit-filter: saturate(0.2) opacity(0.5);
+    cursor: not-allowed;
+}
