@@ -88,3 +88,20 @@ export const buttonGenerateCars: ElementParams<'button'> = {
     classNames: ['button', 'button-primary'],
     textContent: 'GENERATE CARS',
 };
+
+export const actionsContainer: ElementParams<'div'> = {
+    tag: 'div',
+    classNames: ['action-buttons-container'],
+};
+
+export const selectButton: ElementParams<'button'> = {
+    tag: 'button',
+    classNames: ['action-button', 'select-button', 'button'],
+    textContent: 'SELECT',
+};
+
+export const deleteButton: ElementParams<'button'> = {
+    tag: 'button',
+    classNames: ['action-button', 'delete-button', 'button'],
+    textContent: 'DELETE',
+};

@@ -1,6 +1,6 @@
 import { getElement } from '../../utils/dom';
 
-const updateTotalCars = (total: string) => {
+const updateTotalCars = (total: number) => {
     const title = getElement('.garage-title');
     title.textContent = `Garage (${total})`;
 };

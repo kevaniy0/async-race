@@ -5,6 +5,7 @@ import * as GARAGE from './garage-data';
 import { CarsData } from '../../api/garage/garage-data';
 import createForm from './create-form-field';
 import createRaceButtons from './race-button-field';
+import createActionButtons from './carActionsButtons';
 
 export const fillGarageSection = (section: HTMLElement, data: CarsData) => {
     while (section.firstElementChild) {
@@ -13,11 +14,12 @@ export const fillGarageSection = (section: HTMLElement, data: CarsData) => {
     data.collection.forEach((car) => {
         const container = createElement(GARAGE.carContainer);
         const carName = createElement(GARAGE.carName);
+        const actionButton = createActionButtons(section, car.id);
         const carImage = createSVG(GARAGE.carSvgClasses, 'auto', car.color);
         const finishImage = createSVG(GARAGE.finishSvgClasses, 'finish', 'white');
 
         carName.textContent = car.name;
-        container.append(carName, carImage, finishImage);
+        container.append(carName, actionButton, carImage, finishImage);
         section.append(container);
     });
 };
@@ -33,7 +35,7 @@ const renderGaragePage = (): void => {
     const title = createElement(GARAGE.title);
     const page = createElement(GARAGE.page);
     const carSection = createElement(GARAGE.carSection);
-    const form = createForm();
+    const form = createForm(carSection);
     const raceField = createRaceButtons();
     getAllCars().then((result) => {
         page.textContent = `Page # ${result.page}`;

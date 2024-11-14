@@ -3,12 +3,12 @@ import createCar from '../../api/garage/createCar';
 import getAllCars from '../../api/garage/getAllCars';
 import Button from '../../components/button';
 import Input from '../../components/input';
-import { createElement, getElement } from '../../utils/dom';
+import { createElement } from '../../utils/dom';
 import * as GARAGE from './garage-data';
 import './style.scss';
 import updateTotalCars from './update-total-cars';
 
-const createForm = (): HTMLFormElement => {
+const createForm = (section: HTMLElement): HTMLFormElement => {
     const form = createElement(GARAGE.form);
 
     const labelCreate = createElement(GARAGE.labelCreate);
@@ -18,9 +18,8 @@ const createForm = (): HTMLFormElement => {
         const name = inputCreate.value;
         createCar(name).then(() => {
             getAllCars().then((data) => {
-                const garageSection = getElement('.section-garage');
-                fillGarageSection(garageSection, data);
-                updateTotalCars(String(data.total));
+                fillGarageSection(section, data);
+                updateTotalCars(data.total);
                 inputCreate.value = '';
             });
         });
