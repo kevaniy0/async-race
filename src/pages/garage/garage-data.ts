@@ -46,7 +46,7 @@ export const inputCreate: ElementParams<'input'> = {
 
 export const buttonCreate: ElementParams<'button'> = {
     tag: 'button',
-    classNames: ['button', 'button-primary'],
+    classNames: ['button', 'button-primary', 'button-create'],
     textContent: 'CREATE',
 };
 
@@ -62,7 +62,7 @@ export const inputUpdate: ElementParams<'input'> = {
 
 export const buttonUpdate: ElementParams<'button'> = {
     tag: 'button',
-    classNames: ['button', 'button-primary'],
+    classNames: ['button', 'button-primary', 'button-update'],
     textContent: 'UPDATE',
 };
 
