@@ -46,7 +46,7 @@ export const inputCreate: ElementParams<'input'> = {
 
 export const buttonCreate: ElementParams<'button'> = {
     tag: 'button',
-    classNames: ['button', 'button-primary'],
+    classNames: ['button', 'button-primary', 'button-create'],
     textContent: 'CREATE',
 };
 
@@ -62,7 +62,7 @@ export const inputUpdate: ElementParams<'input'> = {
 
 export const buttonUpdate: ElementParams<'button'> = {
     tag: 'button',
-    classNames: ['button', 'button-primary'],
+    classNames: ['button', 'button-primary', 'button-update'],
     textContent: 'UPDATE',
 };
 
@@ -87,4 +87,21 @@ export const buttonGenerateCars: ElementParams<'button'> = {
     tag: 'button',
     classNames: ['button', 'button-primary'],
     textContent: 'GENERATE CARS',
+};
+
+export const actionsContainer: ElementParams<'div'> = {
+    tag: 'div',
+    classNames: ['action-buttons-container'],
+};
+
+export const selectButton: ElementParams<'button'> = {
+    tag: 'button',
+    classNames: ['action-button', 'select-button', 'button'],
+    textContent: 'SELECT',
+};
+
+export const deleteButton: ElementParams<'button'> = {
+    tag: 'button',
+    classNames: ['action-button', 'delete-button', 'button'],
+    textContent: 'DELETE',
 };
