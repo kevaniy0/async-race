@@ -24,6 +24,7 @@
     "rules": {
         "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
         "implicit-arrow-linebreak": "off",
+        "arrow-body-style": "off",
         "no-unused-vars": "off",
         "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
         "import/extensions": "off",
