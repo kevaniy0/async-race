@@ -1,6 +1,7 @@
 import { fillGarageSection } from '.';
 import deleteCar from '../../api/garage/deleteCar';
 import getAllCars from '../../api/garage/getAllCars';
+import getCar from '../../api/garage/getCar';
 import deleteWinnerCar from '../../api/winners/deleteCar';
 import getAllWinnerCars from '../../api/winners/getAllWinnerCars';
 import { WinnerCar } from '../../api/winners/winners-data';
@@ -17,10 +18,13 @@ const createActionButtons = (section: HTMLElement, id: number): HTMLDivElement =
     const container = createElement(actionsContainer);
     const selectButton = Button(selectBTN);
     selectButton.addEventListener('click', () => {
-        const updateInput = getElement('.input-update');
+        const updateInput = getElement('.input-update') as HTMLInputElement;
         const updateButton = getElement('.button-update') as HTMLButtonElement;
         updateButton.disabled = false;
         updateInput.focus();
+        getCar(id).then((data) => {
+            updateInput.value = data.name;
+        });
         updateInput.dataset.carId = String(id);
     });
     const deleteButton = Button(deleteBTN);
