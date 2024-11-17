@@ -105,3 +105,19 @@ export const deleteButton: ElementParams<'button'> = {
     classNames: ['action-button', 'delete-button', 'button'],
     textContent: 'DELETE',
 };
+
+export const paginationWrapper: ElementParams<'div'> = {
+    tag: 'div',
+    classNames: ['pagination-field', 'pagination-field__garage'],
+};
+export const leftButton: ElementParams<'button'> = {
+    tag: 'button',
+    classNames: ['pagination-button', 'pagination-button__left', 'button', 'button-primary'],
+    textContent: 'PREV',
+};
+
+export const rightButton: ElementParams<'button'> = {
+    tag: 'button',
+    classNames: ['pagination-button', 'pagination-button__right', 'button', 'button-primary'],
+    textContent: 'NEXT',
+};

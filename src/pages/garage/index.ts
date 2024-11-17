@@ -6,6 +6,10 @@ import { CarsData } from '../../api/garage/garage-data';
 import createForm from './create-form-field';
 import createRaceButtons from './race-button-field';
 import createActionButtons from './carActionsButtons';
+import PaginationButtons from '../../components/paginationButtons';
+import paginateCars from './paginateCars';
+import updatePageNumber from './update-page-number';
+import updateTotalCars from './update-total-cars';
 
 export const fillGarageSection = (section: HTMLElement, data: CarsData) => {
     while (section.firstElementChild) {
@@ -22,6 +26,11 @@ export const fillGarageSection = (section: HTMLElement, data: CarsData) => {
         container.append(carName, actionButton, carImage, finishImage);
         section.append(container);
     });
+    updatePageNumber(data.page);
+    updateTotalCars(data.total);
+    const prevBTN = getElement('.pagination-button__left') as HTMLButtonElement;
+    const nextBTN = getElement('.pagination-button__right') as HTMLButtonElement;
+    paginateCars(prevBTN, nextBTN, data);
 };
 
 const renderGaragePage = (): void => {
@@ -42,8 +51,13 @@ const renderGaragePage = (): void => {
         title.textContent = `Garage (${result.total})`;
         fillGarageSection(carSection, result);
     });
+    const paginationField = PaginationButtons(
+        GARAGE.paginationWrapper,
+        GARAGE.leftButton,
+        GARAGE.rightButton
+    );
 
-    garage.append(form, raceField, title, page, carSection);
+    garage.append(form, raceField, title, page, carSection, paginationField);
     root.append(garage);
 };
 
