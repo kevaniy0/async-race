@@ -1,0 +1,17 @@
+.engine-button {
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    svg {
+        width: 30px;
+        height: 30px;
+    }
+}
+.engine-buttons-wrapper {
+    position: absolute;
+    top: 40px;
+    display: flex;
+    gap: 5px;
+}
