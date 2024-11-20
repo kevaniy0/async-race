@@ -11,6 +11,7 @@ import paginateCars from './paginateCars';
 import updatePageNumber from './update-page-number';
 import updateTotalCars from './update-total-cars';
 import { getState, updateInputsState } from '../../state';
+import EngineButtons from '../../components/engineButtons';
 
 export const fillGarageSection = (section: HTMLElement, data: CarsData) => {
     while (section.firstElementChild) {
@@ -22,10 +23,11 @@ export const fillGarageSection = (section: HTMLElement, data: CarsData) => {
         const actionButton = createActionButtons(section, car.id);
         const carImage = createSVG(GARAGE.carSvgClasses, 'auto', car.color);
         const finishImage = createSVG(GARAGE.finishSvgClasses, 'finish', 'white');
+        const engineButtons = EngineButtons(car.id);
         updateInputsState();
 
         carName.textContent = car.name;
-        container.append(carName, actionButton, carImage, finishImage);
+        container.append(carName, actionButton, carImage, finishImage, engineButtons);
         section.append(container);
     });
     updatePageNumber(data.page);
