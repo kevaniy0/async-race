@@ -35,6 +35,6 @@ export const getElement = <T extends HTMLElement>(
     parent: Document | HTMLElement = document
 ): T => {
     const element = parent.querySelector<T>(selector);
-    if (!element) throw new Error(`Element witch selector "${selector}" not found`);
+    if (!element) throw new Error(`Element with selector "${selector}" not found`);
     return element as T;
 };

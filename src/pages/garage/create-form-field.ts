@@ -27,6 +27,7 @@ const createForm = (section: HTMLElement): HTMLFormElement => {
                 fillGarageSection(section, data);
                 updateTotalCars(data.total);
                 inputCreate.value = '';
+                inputColorCreate.value = 'black';
             });
         });
     });
@@ -49,6 +50,7 @@ const createForm = (section: HTMLElement): HTMLFormElement => {
                     fillGarageSection(section, data);
                     inputUpdate.value = '';
                     buttonUpdate.disabled = true;
+                    inputColorUpdate.value = 'black';
                 });
         });
     });
