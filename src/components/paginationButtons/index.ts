@@ -1,11 +1,13 @@
 import getAllCars from '../../api/garage/getAllCars';
 import { fillGarageSection } from '../../pages/garage';
+import { saveState } from '../../state';
 import { createElement, ElementParams, getElement } from '../../utils/dom';
 import './style.scss';
 
 const callback = (page: number): void => {
     getAllCars(page).then((result) => {
         const section = getElement('.section-garage');
+        saveState();
         fillGarageSection(section, result);
     });
 };

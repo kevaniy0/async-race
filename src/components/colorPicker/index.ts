@@ -1,5 +1,6 @@
 import './style.scss';
 import { createElement, ElementParams } from '../../utils/dom';
+import { saveState } from '../../state';
 
 const ColorPicker = (params: ElementParams<'input'>): HTMLInputElement => {
     const input = createElement(params);
@@ -11,6 +12,7 @@ const ColorPicker = (params: ElementParams<'input'>): HTMLInputElement => {
         const target = event.target as HTMLInputElement;
         if (target) {
             input.setAttribute('value', target.value);
+            saveState();
         }
     });
     return input;

@@ -23,6 +23,8 @@ const createActionButtons = (section: HTMLElement, id: number): HTMLDivElement =
         updateButton.disabled = false;
         updateInput.focus();
         getCar(id).then((data) => {
+            const inputColor = getElement('.color-picker__update') as HTMLInputElement;
+            inputColor.value = data.color;
             updateInput.value = data.name;
         });
         updateInput.dataset.carId = String(id);
