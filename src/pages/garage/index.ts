@@ -22,6 +22,7 @@ export const fillGarageSection = (section: HTMLElement, data: CarsData) => {
         const carName = createElement(GARAGE.carName);
         const actionButton = createActionButtons(section, car.id);
         const carImage = createSVG(GARAGE.carSvgClasses, 'auto', car.color);
+        carImage.id = `car-${car.id}`;
         const finishImage = createSVG(GARAGE.finishSvgClasses, 'finish', 'white');
         const engineButtons = EngineButtons(car.id);
         updateInputsState();
