@@ -1,9 +1,10 @@
 import url, { DriveResponse } from './engine-data';
 
-const startDrive = (id: number) => {
+const startDrive = (id: number, signal?: AbortSignal) => {
     const fullUrl = `${url}?id=${id}&status=drive`;
     return fetch(fullUrl, {
         method: 'PATCH',
+        signal,
     })
         .then((response) => {
             if (response.status === 200) response.json();

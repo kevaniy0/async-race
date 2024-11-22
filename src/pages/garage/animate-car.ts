@@ -1,6 +1,6 @@
-let animationFrameId: number | null = null;
+import carState from '../../state/car-state';
 
-const animateCar = (car: HTMLElement, time: number) => {
+const animateCar = (id: number, car: HTMLElement, time: number) => {
     const start = performance.now();
     const startPosition = parseFloat(window.getComputedStyle(car).left) || 0;
     const endPosition = car.parentElement!.offsetWidth - startPosition - 40;
@@ -13,18 +13,22 @@ const animateCar = (car: HTMLElement, time: number) => {
         elem.style.left = `${currentPosition}px`;
 
         if (progress < 1) {
-            animationFrameId = requestAnimationFrame(step);
+            carState[id].animationId = requestAnimationFrame(step);
         } else {
-            animationFrameId = null;
+            carState[id].animationId = null;
         }
     }
-    animationFrameId = requestAnimationFrame(step);
+    carState[id].animationId = requestAnimationFrame(step);
 };
 
-export const stopAnimation = () => {
-    if (animationFrameId !== null) {
-        cancelAnimationFrame(animationFrameId);
-        animationFrameId = null;
+export const stopAnimation = (id: number) => {
+    if (carState[id].controller) {
+        carState[id].controller.abort();
+        carState[id].controller = null;
+    }
+    if (carState[id].animationId !== null) {
+        cancelAnimationFrame(carState[id].animationId);
+        carState[id].animationId = null;
     }
 };
 
