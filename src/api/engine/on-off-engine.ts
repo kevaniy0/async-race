@@ -5,10 +5,14 @@ export type SwitchEngine = {
     status: 'started' | 'stopped';
 };
 
-const switchStatusEngine = (params: SwitchEngine): Promise<string | EngineResponse> => {
+const switchStatusEngine = (
+    params: SwitchEngine,
+    signal?: AbortSignal
+): Promise<string | EngineResponse> => {
     const fullURL = `${url}?id=${params.idCar}&status=${params.status}`;
     return fetch(fullURL, {
         method: 'PATCH',
+        signal,
     })
         .then((response) => {
             if (response.status === 200) return response.json();
