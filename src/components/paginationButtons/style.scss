@@ -4,4 +4,12 @@
     .button {
         width: max-content;
     }
+    @media (max-width: 800px) {
+        gap: 3px;
+        .button {
+            font-size: 0.8rem;
+            padding: 2px;
+            height: 20px;
+        }
+    }
 }

@@ -67,6 +67,10 @@
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
+    @media (max-width: 800px) {
+        font-size: 0.7rem;
+        height: 20px;
+    }
 }
 
 .action-button:not(:disabled):hover,
@@ -82,4 +86,15 @@
     filter: saturate(0.2) opacity(0.5);
     -webkit-filter: saturate(0.2) opacity(0.5);
     cursor: not-allowed;
+}
+
+@media (max-width: 800px) {
+    .label {
+        align-items: center;
+    }
+    .button-primary {
+        font-size: 0.8rem;
+        padding: 3px;
+        height: 20px;
+    }
 }

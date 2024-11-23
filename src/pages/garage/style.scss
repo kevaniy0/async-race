@@ -1,5 +1,20 @@
 .garage-container {
     font-family: 'DM Serif Text';
+    @media (max-width: 800px) {
+        .garage-title {
+            font-size: 1.6rem;
+            margin-bottom: 5px;
+        }
+        .current-page {
+            margin-top: 0;
+            font-size: 1.3rem;
+        }
+        .garage-form {
+            .button.button-primary {
+                width: 55px;
+            }
+        }
+    }
     .car-container {
         display: flex;
         align-items: baseline;
@@ -9,9 +24,15 @@
         border-bottom: 2px solid gray;
         border-bottom-style: dashed;
         position: relative;
+        @media (max-width: 800px) {
+            height: 65px;
+        }
         .car-name {
             margin: 0;
             padding: 0;
+            @media (max-width: 800px) {
+                font-size: 0.8rem;
+            }
         }
         .car-image {
             position: absolute;
@@ -26,6 +47,16 @@
             width: 50px;
             height: 30px;
             bottom: 5px;
+        }
+        @media (max-width: 800px) {
+            .car-image {
+                width: 80px;
+                height: 40px;
+                top: 32px;
+            }
+            .finish-image {
+                height: 20px;
+            }
         }
     }
 
