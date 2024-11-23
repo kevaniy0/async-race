@@ -4,6 +4,9 @@
     background: transparent;
     border: none;
     padding: 0;
+    &:disabled {
+        background-color: transparent;
+    }
     svg {
         width: 30px;
         height: 30px;

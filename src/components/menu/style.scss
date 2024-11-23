@@ -5,4 +5,8 @@
     &__item {
         list-style: none;
     }
+    &__button:disabled {
+        pointer-events: none;
+        filter: saturate(0.2) opacity(0.5);
+    }
 }
