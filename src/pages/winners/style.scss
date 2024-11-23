@@ -4,9 +4,62 @@
     .winners-title {
         text-align: center;
     }
+    @media (max-width: 800px) {
+        .winners-title {
+            font-size: 1.6rem;
+            margin-bottom: 5px;
+        }
+        .current-page {
+            margin-top: 0;
+            font-size: 1.3rem;
+        }
+        .winners-list {
+            font-size: 0.9rem;
+            th {
+                padding: 5px 25px;
+            }
+            td {
+                position: relative;
+                height: 50px;
+            }
+            .table-th-svg {
+                position: absolute;
+                top: 5px;
+                left: 3px;
+                width: 70px;
+                height: 40px;
+            }
+        }
+    }
+    @media (max-width: 600px) {
+        .winners-title {
+            font-size: 1.6rem;
+            margin-bottom: 5px;
+        }
+        .current-page {
+            margin-top: 0;
+            font-size: 1.3rem;
+        }
+        .winners-list {
+            font-size: 0.8rem;
+            th {
+                padding: 5px 25px;
+            }
+            td {
+                position: relative;
+                height: 50px;
+            }
+            .table-th-svg {
+                position: absolute;
+                top: 5px;
+                left: 3px;
+                width: 70px;
+                height: 40px;
+            }
+        }
+    }
 }
 .winners-list {
-    width: max-content;
     margin: 0 auto;
     border-collapse: collapse;
     th {

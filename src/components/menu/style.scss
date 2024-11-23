@@ -10,3 +10,13 @@
         filter: saturate(0.2) opacity(0.5);
     }
 }
+
+@media (max-width: 800px) {
+    .menu-list {
+        .menu-list__button {
+            width: 4.5rem;
+            font-size: 0.9rem;
+            height: 22px;
+        }
+    }
+}
