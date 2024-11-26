@@ -4,7 +4,9 @@ import switchStatusEngine from '../../api/engine/on-off-engine';
 import startDrive from '../../api/engine/startDrive';
 import getAllCars from '../../api/garage/getAllCars';
 import Button from '../../components/button';
-import blockEngineButtons from '../../components/engineButtons/blockEngineButtons';
+import blockEngineButtons, {
+    unBlockEngineButtons,
+} from '../../components/engineButtons/blockEngineButtons';
 import { getState } from '../../state';
 import carState from '../../state/car-state';
 import { createElement, getElement } from '../../utils/dom';
@@ -23,6 +25,8 @@ const createRaceButtons = (): HTMLDivElement => {
         const list = Object.values(carsOnPage);
         const promises: Promise<string | EngineResponse>[] = [];
         buttonRace.disabled = true;
+        const resetButton = getElement('.button__reset') as HTMLButtonElement;
+        resetButton.disabled = true;
         blockEngineButtons();
         list.forEach((item) => {
             promises.push(
@@ -46,9 +50,13 @@ const createRaceButtons = (): HTMLDivElement => {
                             stopAnimation(item.id);
                         }
                     }
-                    return 'ds';
+                    return data;
                 })
             );
+        });
+        Promise.any([...promises]).then((data) => {
+            console.log(data);
+            resetButton.disabled = false;
         });
     });
     buttonGenerateCars.addEventListener('click', () => {
@@ -58,6 +66,19 @@ const createRaceButtons = (): HTMLDivElement => {
                 const section = getElement('.section-garage');
                 fillGarageSection(section, data);
             });
+    });
+    buttonReset.addEventListener('click', async () => {
+        const page = getState().garagePage;
+        const carsOnPage = (await getAllCars(page)).collection;
+        const list = Object.values(carsOnPage);
+        unBlockEngineButtons();
+        list.forEach((item) => {
+            stopAnimation(item.id);
+            switchStatusEngine({ idCar: item.id, status: 'stopped' }).then(() => {
+                const car = getElement(`#car-${item.id}`);
+                car.style.left = '60px';
+            });
+        });
     });
     field.append(buttonRace, buttonReset, buttonGenerateCars);
     return field;
