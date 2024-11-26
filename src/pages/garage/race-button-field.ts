@@ -3,6 +3,9 @@ import switchStatusEngine from '../../api/engine/on-off-engine';
 import startDrive from '../../api/engine/startDrive';
 import { Car } from '../../api/garage/garage-data';
 import getAllCars from '../../api/garage/getAllCars';
+import createWinner from '../../api/winners/createWinner';
+import getAllWinnerCars from '../../api/winners/getAllWinnerCars';
+import updateWinner from '../../api/winners/updateWinner';
 import Button from '../../components/button';
 import blockEngineButtons, {
     unBlockEngineButtons,
@@ -56,11 +59,20 @@ const createRaceButtons = (): HTMLDivElement => {
                 })
             );
         });
-        Promise.any([...promises]).then((data) => {
+        Promise.any([...promises]).then(async (data) => {
             const modal = WinnerModal(data.name, data.time);
             const main = getElement('.main');
             main.append(modal);
             resetButton.disabled = false;
+            const winners = await getAllWinnerCars();
+            const findWinner = winners.find((item) => item.id === data.id);
+            if (findWinner) {
+                const oldTime = findWinner.time;
+                const time = oldTime > data.time ? data.time : oldTime;
+                updateWinner(data.id, { wins: findWinner.wins + 1, time });
+            } else {
+                createWinner({ id: data.id, wins: 1, time: data.time });
+            }
         });
     });
     buttonGenerateCars.addEventListener('click', () => {

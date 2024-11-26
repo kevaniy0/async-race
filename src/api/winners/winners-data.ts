@@ -3,6 +3,11 @@ export type WinnerCar = {
     wins: number;
     time: number;
 };
+
+export type WinnerUpdate = {
+    wins: number;
+    time: number;
+};
 export type WinnerList = WinnerCar[];
 
 const url = 'http://localhost:3000/winners';
