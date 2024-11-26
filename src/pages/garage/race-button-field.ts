@@ -1,12 +1,13 @@
 import { fillGarageSection } from '.';
-import { EngineResponse } from '../../api/engine/engine-data';
 import switchStatusEngine from '../../api/engine/on-off-engine';
 import startDrive from '../../api/engine/startDrive';
+import { Car } from '../../api/garage/garage-data';
 import getAllCars from '../../api/garage/getAllCars';
 import Button from '../../components/button';
 import blockEngineButtons, {
     unBlockEngineButtons,
 } from '../../components/engineButtons/blockEngineButtons';
+import WinnerModal from '../../components/winnerModal';
 import { getState } from '../../state';
 import carState from '../../state/car-state';
 import { createElement, getElement } from '../../utils/dom';
@@ -23,7 +24,7 @@ const createRaceButtons = (): HTMLDivElement => {
         const page = getState().garagePage;
         const carsOnPage = (await getAllCars(page)).collection;
         const list = Object.values(carsOnPage);
-        const promises: Promise<string | EngineResponse>[] = [];
+        const promises: Promise<Car & { time: number }>[] = [];
         buttonRace.disabled = true;
         const resetButton = getElement('.button__reset') as HTMLButtonElement;
         resetButton.disabled = true;
@@ -31,7 +32,7 @@ const createRaceButtons = (): HTMLDivElement => {
         list.forEach((item) => {
             promises.push(
                 switchStatusEngine({ idCar: item.id, status: 'started' }).then(async (data) => {
-                    if (typeof data === 'string') return 'ds';
+                    if (typeof data === 'string') throw new Error();
                     const car = getElement(`#car-${item.id}`);
                     const time = data.distance / data.velocity;
                     if (carState[item.id]) {
@@ -48,14 +49,17 @@ const createRaceButtons = (): HTMLDivElement => {
                     if (typeof response !== 'string') {
                         if (response.success === false) {
                             stopAnimation(item.id);
+                            throw new Error();
                         }
                     }
-                    return data;
+                    return { ...item, time: Number((time / 1000).toFixed(2)) };
                 })
             );
         });
         Promise.any([...promises]).then((data) => {
-            console.log(data);
+            const modal = WinnerModal(data.name, data.time);
+            const main = getElement('.main');
+            main.append(modal);
             resetButton.disabled = false;
         });
     });
