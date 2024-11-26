@@ -5,10 +5,14 @@ import { createElement, ElementParams, getElement } from '../../utils/dom';
 import './style.scss';
 
 const callback = (page: number): void => {
+    const raceButton = getElement('.button__race') as HTMLButtonElement;
+    if (raceButton.disabled) {
+        raceButton.disabled = false;
+    }
     getAllCars(page).then((result) => {
         const section = getElement('.section-garage');
-        saveState();
         fillGarageSection(section, result);
+        saveState();
     });
 };
 
