@@ -73,13 +73,13 @@ export const buttonField: ElementParams<'div'> = {
 
 export const buttonRace: ElementParams<'button'> = {
     tag: 'button',
-    classNames: ['button', 'button-primary'],
+    classNames: ['button', 'button-primary', 'button__race'],
     textContent: 'RACE',
 };
 
 export const buttonReset: ElementParams<'button'> = {
     tag: 'button',
-    classNames: ['button', 'button-primary'],
+    classNames: ['button', 'button-primary', 'button__reset'],
     textContent: 'RESET',
 };
 

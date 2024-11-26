@@ -54,7 +54,6 @@ const EngineButtons = (id: number) => {
 
     stopButton.addEventListener('click', () => {
         stopAnimation(id);
-
         switchStatusEngine({ idCar: id, status: 'stopped' }).then(() => {
             const startBTN = getElement('.engine-button__start', parent) as HTMLButtonElement;
             startBTN.disabled = false;
