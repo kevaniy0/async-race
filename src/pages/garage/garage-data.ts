@@ -85,7 +85,7 @@ export const buttonReset: ElementParams<'button'> = {
 
 export const buttonGenerateCars: ElementParams<'button'> = {
     tag: 'button',
-    classNames: ['button', 'button-primary'],
+    classNames: ['button', 'button-primary', 'generate-cars-button'],
     textContent: 'GENERATE CARS',
 };
 
