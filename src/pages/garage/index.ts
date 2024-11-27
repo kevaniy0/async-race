@@ -56,6 +56,12 @@ const renderGaragePage = (): void => {
     getAllCars(state.garagePage).then((result) => {
         page.textContent = `Page # ${result.page}`;
         title.textContent = `Garage (${result.total})`;
+        const raceButton = getElement('.button__race') as HTMLButtonElement;
+        if (result.total === 0) {
+            raceButton.disabled = true;
+        } else {
+            raceButton.disabled = false;
+        }
         fillGarageSection(carSection, result);
     });
     const paginationField = PaginationButtons(

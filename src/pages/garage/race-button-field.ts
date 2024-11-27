@@ -59,21 +59,26 @@ const createRaceButtons = (): HTMLDivElement => {
                 })
             );
         });
-        Promise.any([...promises]).then(async (data) => {
-            const modal = WinnerModal(data.name, data.time);
-            const main = getElement('.main');
-            main.append(modal);
-            resetButton.disabled = false;
-            const winners = await getAllWinnerCars();
-            const findWinner = winners.find((item) => item.id === data.id);
-            if (findWinner) {
-                const oldTime = findWinner.time;
-                const time = oldTime > data.time ? data.time : oldTime;
-                updateWinner(data.id, { wins: findWinner.wins + 1, time });
-            } else {
-                createWinner({ id: data.id, wins: 1, time: data.time });
-            }
-        });
+        Promise.any([...promises])
+            .then(async (data) => {
+                const modal = WinnerModal(data.name, data.time);
+                const main = getElement('.main');
+                main.append(modal);
+                resetButton.disabled = false;
+                const winners = await getAllWinnerCars();
+                const findWinner = winners.find((item) => item.id === data.id);
+                if (findWinner) {
+                    const oldTime = findWinner.time;
+                    const time = oldTime > data.time ? data.time : oldTime;
+                    updateWinner(data.id, { wins: findWinner.wins + 1, time });
+                } else {
+                    createWinner({ id: data.id, wins: 1, time: data.time });
+                }
+            })
+            .catch(() => {
+                console.log('There is NO winner, all cars broke down');
+                resetButton.disabled = false;
+            });
     });
     buttonGenerateCars.addEventListener('click', () => {
         generateCars(quantityCars)
@@ -81,20 +86,23 @@ const createRaceButtons = (): HTMLDivElement => {
             .then((data) => {
                 const section = getElement('.section-garage');
                 fillGarageSection(section, data);
+                const raceButton = getElement('.button__race') as HTMLButtonElement;
+                raceButton.disabled = false;
             });
     });
     buttonReset.addEventListener('click', async () => {
         const page = getState().garagePage;
         const carsOnPage = (await getAllCars(page)).collection;
         const list = Object.values(carsOnPage);
-        unBlockEngineButtons();
-        list.forEach((item) => {
+
+        const promises = list.map(async (item) => {
             stopAnimation(item.id);
-            switchStatusEngine({ idCar: item.id, status: 'stopped' }).then(() => {
-                const car = getElement(`#car-${item.id}`);
-                car.style.left = '60px';
-            });
+            await switchStatusEngine({ idCar: item.id, status: 'stopped' });
+            const car = getElement(`#car-${item.id}`);
+            car.style.left = '60px';
         });
+        await Promise.all(promises);
+        unBlockEngineButtons();
     });
     field.append(buttonRace, buttonReset, buttonGenerateCars);
     return field;

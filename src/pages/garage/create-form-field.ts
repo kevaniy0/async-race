@@ -7,7 +7,8 @@ import Button from '../../components/button';
 import ColorPicker from '../../components/colorPicker';
 import { colorCreate, colorUpdate } from '../../components/colorPicker/colorPicker-data';
 import Input from '../../components/input';
-import { createElement } from '../../utils/dom';
+import { getState } from '../../state';
+import { createElement, getElement } from '../../utils/dom';
 import * as GARAGE from './garage-data';
 import './style.scss';
 import updateTotalCars from './update-total-cars';
@@ -23,7 +24,10 @@ const createForm = (section: HTMLElement): HTMLFormElement => {
     buttonCreate.addEventListener('click', () => {
         const name = inputCreate.value;
         createCar(name, inputColorCreate.value).then(() => {
-            getAllCars().then((data) => {
+            const state = getState();
+            getAllCars(state.garagePage).then((data) => {
+                const raceButton = getElement('.button__race') as HTMLButtonElement;
+                raceButton.disabled = false;
                 fillGarageSection(section, data);
                 updateTotalCars(data.total);
                 inputCreate.value = '';
@@ -45,7 +49,10 @@ const createForm = (section: HTMLElement): HTMLFormElement => {
         const newColor = inputColorUpdate.value;
         getCar(Number(idCar)).then(({ id }) => {
             updateCar(id, newName, newColor)
-                .then(() => getAllCars())
+                .then(() => {
+                    const state = getState();
+                    return getAllCars(state.garagePage);
+                })
                 .then((data) => {
                     fillGarageSection(section, data);
                     inputUpdate.value = '';
