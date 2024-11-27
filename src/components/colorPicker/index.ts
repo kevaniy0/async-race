@@ -12,7 +12,7 @@ const ColorPicker = (params: ElementParams<'input'>): HTMLInputElement => {
         const target = event.target as HTMLInputElement;
         if (target) {
             input.setAttribute('value', target.value);
-            saveState();
+            saveState('garage');
         }
     });
     return input;

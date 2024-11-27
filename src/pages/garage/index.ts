@@ -61,7 +61,8 @@ const renderGaragePage = (): void => {
     const paginationField = PaginationButtons(
         GARAGE.paginationWrapper,
         GARAGE.leftButton,
-        GARAGE.rightButton
+        GARAGE.rightButton,
+        'garage'
     );
 
     garage.append(form, raceField, title, page, carSection, paginationField);
