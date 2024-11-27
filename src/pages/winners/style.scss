@@ -82,3 +82,12 @@
     justify-content: center;
     margin-top: 10px;
 }
+
+.sort-down::after {
+    content: '\2191';
+    margin-left: 2px;
+}
+.sort-up::after {
+    content: '\2193';
+    margin-left: 2px;
+}

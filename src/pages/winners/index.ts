@@ -6,6 +6,7 @@ import { getCar } from '../../api/garage/getCar';
 import PaginationButtons from '../../components/paginationButtons';
 import paginateWinners from './paginateWinners';
 import { getState } from '../../state';
+import sortTable, { toggleSortIcon } from './sortTable';
 
 const fillWinnersTable = (params: WINNERS.TableParams): void => {
     const thead = createElement({ tag: 'thead', classNames: ['thead'] });
@@ -13,6 +14,22 @@ const fillWinnersTable = (params: WINNERS.TableParams): void => {
     params.headerRow.forEach((item) => {
         const th = createElement({ tag: 'th', classNames: ['head-th'], textContent: item });
         headTR.append(th);
+        if (th.textContent === 'Wins') {
+            th.style.cursor = 'pointer';
+            th.classList.add('sort-item', 'sort-wins');
+            th.addEventListener('click', () => {
+                sortTable('wins');
+                toggleSortIcon(th);
+            });
+        }
+        if (th.textContent === 'Best Time (seconds)') {
+            th.style.cursor = 'pointer';
+            th.classList.add('sort-item', 'sort-time');
+            th.addEventListener('click', () => {
+                sortTable('time');
+                toggleSortIcon(th);
+            });
+        }
     });
     const tbody = createElement({ tag: 'tbody', classNames: ['tbody'] });
     params.data.data.forEach((item, index) => {
