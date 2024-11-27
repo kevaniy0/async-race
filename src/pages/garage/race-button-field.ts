@@ -15,6 +15,7 @@ import { getState } from '../../state';
 import carState from '../../state/car-state';
 import { createElement, getElement } from '../../utils/dom';
 import animateCar, { stopAnimation } from './animate-car';
+import { blockButtons, unblockButtons } from './blockButtons';
 import * as GARAGE from './garage-data';
 import generateCars, { quantityCars } from './generateCars';
 
@@ -32,6 +33,7 @@ const createRaceButtons = (): HTMLDivElement => {
         const resetButton = getElement('.button__reset') as HTMLButtonElement;
         resetButton.disabled = true;
         blockEngineButtons();
+        blockButtons();
         list.forEach((item) => {
             promises.push(
                 switchStatusEngine({ idCar: item.id, status: 'started' }).then(async (data) => {
@@ -67,6 +69,7 @@ const createRaceButtons = (): HTMLDivElement => {
                 resetButton.disabled = false;
                 const winners = await getAllWinnerCars();
                 const findWinner = winners.find((item) => item.id === data.id);
+                unblockButtons();
                 if (findWinner) {
                     const oldTime = findWinner.time;
                     const time = oldTime > data.time ? data.time : oldTime;
@@ -77,6 +80,7 @@ const createRaceButtons = (): HTMLDivElement => {
             })
             .catch(() => {
                 console.log('There is NO winner, all cars broke down');
+                unblockButtons();
                 resetButton.disabled = false;
             });
     });
