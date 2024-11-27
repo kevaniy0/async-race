@@ -3,12 +3,14 @@
     "private": true,
     "version": "0.0.0",
     "type": "module",
+    "homepage": "https://kevaniy0.github.io/async-race",
     "scripts": {
         "dev": "vite",
         "clear": "rd /s /q dist",
         "build": "tsc && vite build",
         "preview": "vite preview",
         "lint": "eslint .",
+        "deploy": "npm run build && gh-pages -d dist",
         "prepare": "husky"
     },
     "devDependencies": {
@@ -21,6 +23,7 @@
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-import": "^2.31.0",
         "eslint-plugin-prettier": "^5.2.1",
+        "gh-pages": "6.2.0",
         "globals": "^15.11.0",
         "husky": "^9.1.6",
         "normalize-css": "^2.3.1",

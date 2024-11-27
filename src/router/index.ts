@@ -12,7 +12,8 @@ export const createRouter = (routes: Route[]) => ({
             clearMain();
             page.callback();
             if (window.location.pathname !== path) {
-                window.history.pushState(null, '', path);
+                window.history.pushState(null, '', `/async-race${path}`); // gh-pages
+                // window.history.pushState(null, '', path); // Vite
             }
         }
     },
