@@ -4,6 +4,7 @@ import extractPageNumber from '../utils/extractPageNumber';
 const LOCAL_KEY = 'asyncRaceStateStorage_KEY';
 type StateType = {
     garagePage: number;
+    winnersPage: number;
     inputValues: {
         create: string;
         createColor: string;
@@ -13,6 +14,7 @@ type StateType = {
 };
 const localState: StateType = {
     garagePage: 1,
+    winnersPage: 1,
     inputValues: {
         create: '',
         createColor: '',
@@ -30,21 +32,30 @@ export const getState = (): StateType => {
     return JSON.parse(state) as StateType;
 };
 
-export const saveState = () => {
-    const inputCreate = (getElement('.input-create') as HTMLInputElement).value;
-    const inputCreateColor = (getElement('.color-picker__create') as HTMLInputElement).value;
-    const inputUpdateColor = (getElement('.color-picker__update') as HTMLInputElement).value;
-    const updateInput = (getElement('.input-update') as HTMLInputElement).value;
-    const garagePage = getElement('.current-page').textContent!;
-    const pageNumber = extractPageNumber(garagePage);
+export const saveState = (view: 'garage' | 'winners') => {
+    if (view === 'garage') {
+        const inputCreate = (getElement('.input-create') as HTMLInputElement).value;
+        const inputCreateColor = (getElement('.color-picker__create') as HTMLInputElement).value;
+        const inputUpdateColor = (getElement('.color-picker__update') as HTMLInputElement).value;
+        const updateInput = (getElement('.input-update') as HTMLInputElement).value;
+        const garagePage = getElement('.current-page').textContent!;
+        const pageNumber = extractPageNumber(garagePage);
 
-    const state = getState();
-    state.garagePage = Number(pageNumber);
-    state.inputValues.create = inputCreate;
-    state.inputValues.createColor = inputCreateColor;
-    state.inputValues.updateColor = inputUpdateColor;
-    state.inputValues.update = updateInput;
-    localStorage.setItem(LOCAL_KEY, JSON.stringify(state));
+        const state = getState();
+        state.garagePage = Number(pageNumber);
+        state.inputValues.create = inputCreate;
+        state.inputValues.createColor = inputCreateColor;
+        state.inputValues.updateColor = inputUpdateColor;
+        state.inputValues.update = updateInput;
+        localStorage.setItem(LOCAL_KEY, JSON.stringify(state));
+    } else {
+        const winnerPage = getElement('.current-page').textContent!;
+        const pageNumber = extractPageNumber(winnerPage);
+
+        const state = getState();
+        state.winnersPage = Number(pageNumber);
+        localStorage.setItem(LOCAL_KEY, JSON.stringify(state));
+    }
 };
 
 export const updateInputsState = (): void => {

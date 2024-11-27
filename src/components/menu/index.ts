@@ -13,6 +13,7 @@ const Menu = (): HTMLUListElement => {
         const winnerBTN = getElement('.button-winners') as HTMLButtonElement;
         winnerBTN.removeAttribute('disabled');
         garageButton.disabled = true;
+        saveState('winners');
         router.navigate('/garage');
     });
     garageButton.disabled = true;
@@ -22,7 +23,7 @@ const Menu = (): HTMLUListElement => {
     const winnersButton = Button(MENU.winnersButton, () => {
         winnersButton.disabled = true;
         garageButton.disabled = false;
-        saveState();
+        saveState('garage');
         router.navigate('/winners');
     });
     winners.append(winnersButton);
