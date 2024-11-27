@@ -81,16 +81,26 @@ const renderWinnersPage = (page?: number): void => {
     const state = getState();
     const findPage = page || state.winnersPage;
 
-    renderWinnersList(findPage, 10).then((data) => {
-        const tableParams: WINNERS.TableParams = {
-            table: winnerTable,
-            headerRow: ['Number', 'Car', 'Name', 'Wins', 'Best Time (seconds)'],
-            data,
-        };
-        fillWinnersTable(tableParams);
-        title.textContent = `Winners (${data.total})`;
-        currentPage.textContent = `Page # ${data.page}`;
-    });
+    renderWinnersList(findPage, 10)
+        .then((data) => {
+            if (data.data.length === 0 && data.page === 1) {
+                return renderWinnersList(1, 10);
+            }
+            if (data.data.length === 0) {
+                return renderWinnersList(data.page - 1, 10);
+            }
+            return data;
+        })
+        .then((data) => {
+            const tableParams: WINNERS.TableParams = {
+                table: winnerTable,
+                headerRow: ['Number', 'Car', 'Name', 'Wins', 'Best Time (seconds)'],
+                data,
+            };
+            fillWinnersTable(tableParams);
+            title.textContent = `Winners (${data.total})`;
+            currentPage.textContent = `Page # ${data.page}`;
+        });
     const pagination = PaginationButtons(
         WINNERS.paginationWrapper,
         WINNERS.leftButton,

@@ -6,6 +6,7 @@ import deleteWinnerCar from '../../api/winners/deleteCar';
 import getAllWinnerCars from '../../api/winners/getAllWinnerCars';
 import { WinnerCar } from '../../api/winners/winners-data';
 import Button from '../../components/button';
+import { getState } from '../../state';
 import { createElement, getElement } from '../../utils/dom';
 import {
     actionsContainer,
@@ -32,7 +33,22 @@ const createActionButtons = (section: HTMLElement, id: number): HTMLDivElement =
     const deleteButton = Button(deleteBTN);
     deleteButton.addEventListener('click', () => {
         deleteCar(id)
-            .then(() => getAllCars())
+            .then(() => {
+                const state = getState();
+                return getAllCars(state.garagePage);
+            })
+            .then((data) => {
+                if (data.collection.length === 0 && data.page === 1) {
+                    const raceButton = getElement('.button__race') as HTMLButtonElement;
+                    raceButton.disabled = true;
+                    return getAllCars();
+                }
+                if (data.collection.length === 0) {
+                    return getAllCars(data.page - 1);
+                }
+
+                return data;
+            })
             .then((data) => {
                 updateTotalCars(data.total);
                 fillGarageSection(section, data);
